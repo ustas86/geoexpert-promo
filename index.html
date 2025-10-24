@@ -833,6 +833,264 @@
         transform: translateY(0);
     }}
 
+                /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .burger-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        .burger-menu.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .burger-menu.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Sticky Header Enhancement */
+        header.sticky {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Progress Circles */
+        .progress-section {
+            padding: var(--space-20) 0;
+            background: var(--color-bg);
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-8);
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+        }
+
+        .progress-item {
+            text-align: center;
+        }
+
+        .progress-circle {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto var(--space-4);
+        }
+
+        .progress-circle svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-circle-bg {
+            fill: none;
+            stroke: #e0e0e0;
+            stroke-width: 10;
+        }
+
+        .progress-circle-fill {
+            fill: none;
+            stroke: var(--brand-green);
+            stroke-width: 10;
+            stroke-linecap: round;
+            transition: stroke-dashoffset 2s ease;
+        }
+
+        .progress-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 32px;
+            font-weight: var(--font-weight-bold);
+            color: var(--color-text);
+        }
+
+        .progress-label {
+            font-size: var(--font-size-base);
+            color: var(--color-text-secondary);
+        }
+
+        /* Timeline */
+        .timeline-section {
+            padding: var(--space-20) 0;
+        }
+
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--space-4);
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--brand-green);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: var(--space-8);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) {
+            flex-direction: row;
+        }
+
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .timeline-content {
+            width: calc(50% - 30px);
+            padding: var(--space-6);
+            background: white;
+            border-radius: var(--radius-base);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-marker {
+            width: 20px;
+            height: 20px;
+            background: var(--brand-green);
+            border: 4px solid white;
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 0 4px var(--brand-green);
+        }
+
+        .timeline-number {
+            font-size: 48px;
+            font-weight: var(--font-weight-bold);
+            color: var(--brand-green);
+            opacity: 0.2;
+            margin-bottom: var(--space-2);
+        }
+
+        .timeline-title {
+            font-size: 24px;
+            font-weight: var(--font-weight-bold);
+            margin-bottom: var(--space-3);
+            color: var(--color-text);
+        }
+
+        .timeline-description {
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: var(--space-8);
+            border-radius: var(--radius-base);
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: var(--color-text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--color-text);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+                /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .burger-menu {
+                display: flex;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                flex-direction: column !important;
+                padding-left: 50px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-marker {
+                left: 20px;
+                transform: translateX(0);
+            }
+
+            .progress-circle {
+                width: 120px;
+                height: 120px;
+            }
+
+            .progress-text {
+                font-size: 24px;
+            }
+        }
+
         /* Success message */
         .success-message {
             background: var(--color-success);
