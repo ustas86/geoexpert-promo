@@ -1127,6 +1127,11 @@
                     <a href="tel:+7XXXXXXXXX" class="header-phone">+7 (XXX) XXX-XX-XX</a>
                     <a href="#contact" class="btn btn-primary">Бесплатный аудит</a>
                     <button class="mobile-menu-btn">☰</button>
+                                        <div class="burger-menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -1728,6 +1733,55 @@
         const sections = document.querySelectorAll('.fade-in-section, .section');
         sections.forEach(section => sectionObserver.observe(section));
     });;
+
+            // Burger menu toggle
+    const burgerMenu = document.querySelector('.burger-menu');
+    const navLinks = document.querySelector('.nav-links');
+    
+    if (burgerMenu) {
+        burgerMenu.addEventListener('click', () => {
+            burgerMenu.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    }
+
+    // Enhanced sticky header
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        if (window.scrollY > 100) {
+            header.classList.add('sticky');
+        } else {
+            header.classList.remove('sticky');
+        }
+    });
+
+    // Modal functionality
+    const modalTriggers = document.querySelectorAll('[data-modal]');
+    const modals = document.querySelectorAll('.modal');
+    const modalCloses = document.querySelectorAll('.modal-close');
+
+    modalTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            const modalId = trigger.getAttribute('data-modal');
+            const modal = document.getElementById(modalId);
+            if (modal) modal.classList.add('active');
+        });
+    });
+
+    modalCloses.forEach(closeBtn => {
+        closeBtn.addEventListener('click', () => {
+            closeBtn.closest('.modal').classList.remove('active');
+        });
+    });
+
+    modals.forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    });
     </script>
 </body>
 </html>
